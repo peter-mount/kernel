@@ -1,0 +1,66 @@
+<assembly xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.0" 
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.0 http://maven.apache.org/xsd/assembly-1.1.0.xsd">
+    <id>assembly</id>
+    <formats>
+        <format>tar</format>
+        <format>zip</format>
+    </formats>
+    <baseDirectory>kernel</baseDirectory>
+    <dependencySets>
+        
+        <dependencySet>
+            <!-- bootstrap goes into main directory -->
+            <outputDirectory>/</outputDirectory>
+            <useProjectArtifact>true</useProjectArtifact>
+            <unpack>false</unpack>
+            <scope>runtime</scope>
+            <includes>
+                <include>:generic-image:jar</include>
+            </includes>
+            <outputFileNameMapping>kernel.jar</outputFileNameMapping>
+        </dependencySet>
+        
+        <!-- core libraries go into sharedlib -->
+        <dependencySet>
+            <outputDirectory>/sharedlib</outputDirectory>
+            <useProjectArtifact>true</useProjectArtifact>
+            <unpack>false</unpack>
+            <scope>runtime</scope>
+            <includes>
+                <include>:kernel-core</include>
+            </includes>
+        </dependencySet>
+        
+        <!-- cdi (i.e. weld) goes into cdilib -->
+        <dependencySet>
+            <outputDirectory>/cdilib</outputDirectory>
+            <useProjectArtifact>true</useProjectArtifact>
+            <unpack>false</unpack>
+            <scope>runtime</scope>
+            <includes>
+                <include>org.jboss.weld.se:weld-se-shaded</include>
+                <include>org.jboss:jandex</include>
+            </includes>
+        </dependencySet>
+        
+    </dependencySets>
+    <fileSets>
+        <fileSet>
+            <directory>src/main/assembly</directory>
+            <outputDirectory>/</outputDirectory>
+            <fileMode>0755</fileMode>
+            <includes>
+                <include>start</include>
+            </includes>
+        </fileSet>
+        <fileSet>
+            <directory>src/main/assembly</directory>
+            <outputDirectory>/</outputDirectory>
+            <fileMode>0644</fileMode>
+            <includes>
+                <include>logging.properties</include>
+            </includes>
+        </fileSet>
+    </fileSets>
+</assembly>

@@ -1,0 +1,8 @@
+/cluster-bootstrap/target/
+/cluster-core/target/
+/cluster-image/target/
+/cluster-opendata/target/
+/kernel-bootstrap/target/
+/kernel-core/target/
+/kernel-image/target/
+/kernel-opendata/target/
