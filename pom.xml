@@ -22,6 +22,8 @@
         <module>kernel-core</module>
         <module>kernel-image</module>
         <module>kernel-opendata</module>
+        <!--
+        -->
     </modules>
     
 </project>

@@ -37,13 +37,18 @@ public class Main
 
     /**
      * The directories under our application which to include in the classloader.
-     * <p>
-     * cdilib - the CDI implementation
-     * sharedlib - the core libraries
-     * lib - the application libraries
-     * ext - extension libraries, those that don't fit in either
+     * <ul>
+     * <li>cdilib - the CDI implementation</li>
+     * <li>sharedlib - the core libraries</li>
+     * <li>lib - the application libraries</li>
+     * </ul>
+     *
+     * Classes installed in the following are in the main classloader so we don't include them here.
+     * <ul>
+     * <li>ext - extension libraries, those that don't fit in either</li>
+     * </ul>
      */
-    private static final String DIRECTORIES[] = {"cdilib", "sharedlib", "ext", "lib"};
+    private static final String DIRECTORIES[] = {"cdilib", "sharedlib", "lib"};
 
     public static void main( String[] args )
             throws Exception
@@ -51,8 +56,7 @@ public class Main
         try {
             createClassLoader();
             boot( args );
-        }
-        catch( InvocationTargetException ex ) {
+        } catch( InvocationTargetException ex ) {
             Throwable t = ex.getCause();
             throw t instanceof Exception ? (Exception) t : ex;
         }
@@ -78,8 +82,7 @@ public class Main
                 .flatMap( p -> {
                     try {
                         return Files.walk( p );
-                    }
-                    catch( IOException ex ) {
+                    } catch( IOException ex ) {
                         // Simply ignore this path, possibly doesn't exist
                         return Stream.empty();
                     }
@@ -91,8 +94,7 @@ public class Main
                 .map( p -> {
                     try {
                         return p.toUri().toURL();
-                    }
-                    catch( IOException ex ) {
+                    } catch( IOException ex ) {
                         throw new UncheckedIOException( ex );
                     }
                 } )

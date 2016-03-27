@@ -35,4 +35,9 @@ fi
 # ============================================================
 # Do not edit below this point
 # ============================================================
-exec java $OPTS -cp $DIR/kernel.jar onl.area51.kernel.Main $@
+CP="$DIR/kernel.jar"
+if [ -d "$DIR/ext" ]
+then
+    CP="$CP:$(echo $(ls $DIR/ext/*.jar)|sed "s/ /:/g")"
+fi
+exec java $OPTS -cp $CP onl.area51.kernel.Main $@
