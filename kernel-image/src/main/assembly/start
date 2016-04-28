@@ -40,4 +40,8 @@ if [ -d "$DIR/ext" ]
 then
     CP="$CP:$(echo $(ls $DIR/ext/*.jar)|sed "s/ /:/g")"
 fi
+if [ -d "$DIR/cdilib" ]
+then
+    CP="$CP:$(echo $(ls $DIR/cdilib/*.jar)|sed "s/ /:/g")"
+fi
 exec java $OPTS -cp $CP onl.area51.kernel.Main $@

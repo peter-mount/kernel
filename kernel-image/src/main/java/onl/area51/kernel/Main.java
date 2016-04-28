@@ -48,7 +48,7 @@ public class Main
      * <li>ext - extension libraries, those that don't fit in either</li>
      * </ul>
      */
-    private static final String DIRECTORIES[] = {"cdilib", "sharedlib", "lib"};
+    private static final String DIRECTORIES[] = {"sharedlib", "lib"};
 
     public static void main( String[] args )
             throws Exception
