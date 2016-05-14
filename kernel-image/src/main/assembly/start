@@ -5,6 +5,19 @@
 DIR=$(dirname $0)
 
 # ============================================================
+# Any scripts in start.d are run first.
+# The order of execution is by filename if that's important.
+
+AUXBIN="${DIR}/start.d"
+if [ -d "${AUXBIN}" ]
+then
+    for f in $(ls $AUXBIN)
+    do
+        . "${AUXBIN}/$f"
+    done
+fi
+
+# ============================================================
 # JVM configuration
 
 # Include jul logging config
