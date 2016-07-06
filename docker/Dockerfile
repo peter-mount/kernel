@@ -16,7 +16,8 @@ RUN mkdir -p /opt/kernel &&\
 	-Dmaven.repo.local=/tmp/repo \
 	org.apache.maven.plugins:maven-dependency-plugin:2.10:get \
 	-DrepoUrl=https://nexus.area51.onl/repository/maven-public \
-	-Dartifact=onl.area51.kernel:generic-image:${KERNEL_VERSION}:tar:assembly &&\
+	-Dartifact=onl.area51.kernel:generic-image:${KERNEL_VERSION}:tar:assembly \
+	-Dtransitive=false &&\
     cd /opt &&\
     tar xvf /tmp/repo/onl/area51/kernel/generic-image/${KERNEL_VERSION}/generic-image-${KERNEL_VERSION}-assembly.tar &&\
     rm -rf /tmp/*
