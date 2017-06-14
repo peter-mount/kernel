@@ -10,6 +10,19 @@
     
     <description>The core functionality used for each of our Docker nodes</description>
     
+    <distributionManagement>
+        <repository>
+            <id>releases</id>
+            <name>Area51 Releases</name>
+            <url>https://nexus.area51.onl/repository/maven-releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>snapshots</id>
+            <name>Area51 Snapshots</name>
+            <url>https://nexus.area51.onl/repository/maven-snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
+    
     <properties>
         <docker.image.prefix>area51</docker.image.prefix>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
